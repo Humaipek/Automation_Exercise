@@ -10,19 +10,18 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.time.Duration;
 
-public class TC01 {
+public class TC01 extends TestBase{
 
     @Test
-    void tc01() throws InterruptedException {
-
-        WebDriver driver=new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+    void tc01() {
 
         driver.get("https://automationexercise.com");
-        Thread.sleep(3000);
+        wait(3);
 
-        Assertions.assertEquals(driver.getCurrentUrl(),"https://automationexercise.com/");
+        String expectedTitle="Automation Exercise";
+        String actualTitle=driver.getTitle();
+        System.out.println("actualTitle = " + actualTitle);
+        Assertions.assertEquals(expectedTitle,actualTitle);
 
         WebElement link= driver.findElement(By.xpath("//a[@href='/login']/i"));
         link.click();
@@ -119,8 +118,6 @@ public class TC01 {
 
         WebElement accountdeleted= driver.findElement(By.xpath("//b[.='Account Deleted!']"));
         Assertions.assertTrue(accountdeleted.isDisplayed());
-
-        driver.quit();
 
     }
 }

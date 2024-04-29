@@ -10,18 +10,18 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.time.Duration;
 
-public class TC02 {
+public class TC02 extends TestBase{
 
     @Test
-    void tc02_1() throws InterruptedException {
-        WebDriver driver=new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+    void tc02_1() {
 
         driver.get("https://automationexercise.com");
-        Thread.sleep(3000);
+        wait(3);
 
-        Assertions.assertEquals(driver.getCurrentUrl(),"https://automationexercise.com/");
+        String expectedTitle="Automation Exercise";
+        String actualTitle=driver.getTitle();
+        System.out.println("actualTitle = " + actualTitle);
+        Assertions.assertEquals(expectedTitle,actualTitle);
 
         WebElement link= driver.findElement(By.xpath("//a[@href='/login']/i"));
         link.click();
@@ -97,21 +97,18 @@ public class TC02 {
 
         WebElement create=driver.findElement(By.xpath("//button[@data-qa='create-account']"));
         create.click();
-
-        driver.quit();
     }
 
     @Test
-    void tc02() throws InterruptedException {
-
-        WebDriver driver=new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+    void tc02() {
 
         driver.get("https://automationexercise.com");
-        Thread.sleep(3000);
+        wait(3);
 
-        Assertions.assertEquals(driver.getCurrentUrl(),"https://automationexercise.com/");
+        String expectedTitle="Automation Exercise";
+        String actualTitle=driver.getTitle();
+        System.out.println("actualTitle = " + actualTitle);
+        Assertions.assertEquals(expectedTitle,actualTitle);
 
         WebElement link= driver.findElement(By.xpath("//a[@href='/login']/i"));
         link.click();
@@ -136,8 +133,6 @@ public class TC02 {
 
         WebElement accountdeleted= driver.findElement(By.xpath("//b[.='Account Deleted!']"));
         Assertions.assertTrue(accountdeleted.isDisplayed());
-
-        driver.quit();
 
     }
 }
