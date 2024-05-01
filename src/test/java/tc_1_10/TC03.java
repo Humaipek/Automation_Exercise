@@ -1,45 +1,33 @@
-package test_case01;
+package tc_1_10;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
-import java.time.Duration;
-
-public class TC01 extends TestBase{
-
+public class TC03 extends TestBase {
     @Test
-    void tc01() {
+    void tc03_1()  {
 
         driver.get("https://automationexercise.com");
         wait(3);
 
         String expectedTitle="Automation Exercise";
         String actualTitle=driver.getTitle();
-        System.out.println("actualTitle = " + actualTitle);
         Assertions.assertEquals(expectedTitle,actualTitle);
 
-        WebElement link= driver.findElement(By.xpath("//a[@href='/login']/i"));
+        WebElement link= driver.findElement(By.partialLinkText("Signup / Login"));
         link.click();
-
-        WebElement newUserSignUp= driver.findElement(By.xpath("(//h2)[3]"));
-        Assertions.assertTrue(newUserSignUp.isDisplayed());
 
         WebElement name=driver.findElement(By.xpath("//input[@data-qa='signup-name'] "));
         name.sendKeys("yuniel");
 
         WebElement email=driver.findElement(By.xpath("//input[@data-qa='signup-email']"));
-        email.sendKeys("fenton.gray@foodfarms.net");
+        email.sendKeys("chetanna.shahan@foodfarms.net");
 
         WebElement enter=driver.findElement(By.xpath("//button[@data-qa='signup-button']"));
         enter.click();
-
-        WebElement enterAccount=driver.findElement(By.xpath("//b[.='Enter Account Information']"));
-        Assertions.assertTrue(enterAccount.isDisplayed());
 
         WebElement titleMrs= driver.findElement(By.id("id_gender2"));
         titleMrs.click();
@@ -104,20 +92,35 @@ public class TC01 extends TestBase{
         WebElement create=driver.findElement(By.xpath("//button[@data-qa='create-account']"));
         create.click();
 
-        WebElement accountcreated= driver.findElement(By.xpath("//b[.='Account Created!']"));
-        Assertions.assertTrue(accountcreated.isDisplayed());
+    }
 
-        WebElement continue1= driver.findElement(By.xpath("//a[@data-qa='continue-button']"));
-        continue1.click();
+    @Test
+    void tc03_2() {
 
-        WebElement logged= driver.findElement(By.xpath("//*[text()=' Logged in as ']"));
-        Assertions.assertTrue(logged.isDisplayed());
+        driver.get("https://automationexercise.com");
+        wait(3);
 
-        WebElement delete= driver.findElement(By.xpath("//a[@href='/delete_account']/i"));
+        String expectedTitle="Automation Exercise";
+        String actualTitle=driver.getTitle();
+        Assertions.assertEquals(expectedTitle,actualTitle);
+
+        WebElement link= driver.findElement(By.partialLinkText("Signup / Login"));
+        link.click();
+
+        WebElement loginAcccount= driver.findElement(By.xpath("//h2[.='Login to your account']"));
+        Assertions.assertTrue(loginAcccount.isDisplayed());
+
+        WebElement email=driver.findElement(By.cssSelector("input[data-qa='login-email']"));
+        email.sendKeys("ivory.mathayus@foodfarms.net");
+
+        WebElement password=driver.findElement(By.cssSelector("input[data-qa='login-password']"));
+        password.sendKeys("Dunya1234");
+
+        WebElement enter=driver.findElement(By.cssSelector("button[data-qa='login-button'] "));
+        enter.click();
+        WebElement delete= driver.findElement(By.partialLinkText("Delete Account"));
         delete.click();
 
-        WebElement accountdeleted= driver.findElement(By.xpath("//b[.='Account Deleted!']"));
-        Assertions.assertTrue(accountdeleted.isDisplayed());
 
     }
 }

@@ -1,4 +1,4 @@
-package test_case01;
+package tc_1_10;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -14,10 +14,9 @@ public class TC07 extends TestBase{
 
         String expectedTitle="Automation Exercise";
         String actualTitle=driver.getTitle();
-        System.out.println("actualTitle = " + actualTitle);
         Assertions.assertEquals(expectedTitle,actualTitle);
 
-        WebElement contactUs= driver.findElement(By.xpath("//a[@href='/test_cases']/i"));
+        WebElement contactUs= driver.findElement(By.partialLinkText("Test Cases"));
         contactUs.click();
 
         String actualUrl= driver.getCurrentUrl();

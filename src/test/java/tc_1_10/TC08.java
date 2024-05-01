@@ -1,4 +1,4 @@
-package test_case01;
+package tc_1_10;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -15,10 +15,9 @@ public class TC08 extends TestBase{
 
         String expectedTitle="Automation Exercise";
         String actualTitle=driver.getTitle();
-        System.out.println("actualTitle = " + actualTitle);
         Assertions.assertEquals(expectedTitle,actualTitle);
 
-        WebElement contactUs= driver.findElement(By.xpath("//a[@href='/products']/i"));
+        WebElement contactUs= driver.findElement(By.partialLinkText("Products"));
         contactUs.click();
 
         WebElement actualAllProducts= driver.findElement(By.xpath("//*[.='All Products']"));
@@ -29,7 +28,7 @@ public class TC08 extends TestBase{
         String exceptedUrl2="https://automationexercise.com/products";
         Assertions.assertEquals(actualUrl2,exceptedUrl2);
 
-        WebElement wiewProductOfFirst= driver.findElement(By.xpath("//a[@href='/product_details/1']/i"));
+        WebElement wiewProductOfFirst= driver.findElement(By.partialLinkText("View Product"));
         wiewProductOfFirst.click();
 
         String expectedTitleDeteils="Automation Exercise - Product Details";

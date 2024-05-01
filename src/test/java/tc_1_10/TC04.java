@@ -1,35 +1,31 @@
-package test_case01;
+package tc_1_10;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
-import java.time.Duration;
+public class TC04 extends TestBase{
 
-public class TC03 extends TestBase {
     @Test
-    void tc03_1()  {
+    void test01()  {
 
         driver.get("https://automationexercise.com");
         wait(3);
 
         String expectedTitle="Automation Exercise";
         String actualTitle=driver.getTitle();
-        System.out.println("actualTitle = " + actualTitle);
         Assertions.assertEquals(expectedTitle,actualTitle);
 
-        WebElement link= driver.findElement(By.xpath("//a[@href='/login']/i"));
+        WebElement link= driver.findElement(By.partialLinkText("Signup / Login"));
         link.click();
 
         WebElement name=driver.findElement(By.xpath("//input[@data-qa='signup-name'] "));
         name.sendKeys("yuniel");
 
         WebElement email=driver.findElement(By.xpath("//input[@data-qa='signup-email']"));
-        email.sendKeys("ivory.mathayus@foodfarms.net");
+        email.sendKeys("ensar.jameer@foodfarms.net");
 
         WebElement enter=driver.findElement(By.xpath("//button[@data-qa='signup-button']"));
         enter.click();
@@ -100,30 +96,36 @@ public class TC03 extends TestBase {
     }
 
     @Test
-    void tc03_2() {
-
+    void test02() {
         driver.get("https://automationexercise.com");
         wait(3);
 
         String expectedTitle="Automation Exercise";
         String actualTitle=driver.getTitle();
-        System.out.println("actualTitle = " + actualTitle);
         Assertions.assertEquals(expectedTitle,actualTitle);
 
-        WebElement link= driver.findElement(By.xpath("//a[@href='/login']/i"));
+        WebElement link= driver.findElement(By.partialLinkText("Signup / Login"));
         link.click();
 
         WebElement loginAcccount= driver.findElement(By.xpath("//h2[.='Login to your account']"));
         Assertions.assertTrue(loginAcccount.isDisplayed());
 
         WebElement email=driver.findElement(By.cssSelector("input[data-qa='login-email']"));
-        email.sendKeys("ivory.mathayus@foodfarms.net");
+        email.sendKeys("ensar.jameer@foodfarms.net");
 
         WebElement password=driver.findElement(By.cssSelector("input[data-qa='login-password']"));
         password.sendKeys("Dunya1234");
 
         WebElement enter=driver.findElement(By.cssSelector("button[data-qa='login-button'] "));
         enter.click();
+
+        WebElement logout= driver.findElement(By.partialLinkText("Logout"));
+        logout.click();
+
+        String expectedUrl2="https://automationexercise.com/login";
+        String actualUrl2=driver.getCurrentUrl();
+        Assertions.assertEquals(expectedUrl2,actualUrl2);
+
 
     }
 }

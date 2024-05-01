@@ -1,10 +1,9 @@
-package test_case01;
+package tc_1_10;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 
 public class TC05 extends TestBase{
 
@@ -16,10 +15,9 @@ public class TC05 extends TestBase{
 
         String expectedTitle="Automation Exercise";
         String actualTitle=driver.getTitle();
-        System.out.println("actualTitle = " + actualTitle);
         Assertions.assertEquals(expectedTitle,actualTitle);
 
-        WebElement link= driver.findElement(By.xpath("//a[@href='/login']/i"));
+        WebElement link= driver.findElement(By.partialLinkText("Signup / Login"));
         link.click();
 
         WebElement newUserSignUp= driver.findElement(By.xpath("(//h2)[3]"));

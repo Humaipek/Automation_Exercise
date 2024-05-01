@@ -1,4 +1,4 @@
-package test_case01;
+package tc_1_10;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -14,10 +14,9 @@ public class TC06 extends TestBase {
 
         String expectedTitle="Automation Exercise";
         String actualTitle=driver.getTitle();
-        System.out.println("actualTitle = " + actualTitle);
         Assertions.assertEquals(expectedTitle,actualTitle);
 
-        WebElement contactUs= driver.findElement(By.xpath("//a[@href='/contact_us']/i"));
+        WebElement contactUs= driver.findElement(By.partialLinkText("Contact us"));
         contactUs.click();
         WebElement getInTouch= driver.findElement(By.xpath("(//h2)[2]"));
         Assertions.assertTrue(getInTouch.isDisplayed());
@@ -34,8 +33,8 @@ public class TC06 extends TestBase {
         WebElement message=driver.findElement(By.id("message"));
         message.sendKeys("hello world");
 
-       /* WebElement file=driver.findElement(By.name("upload_file"));
-        file.sendKeys();*/
+        WebElement fileInput=driver.findElement(By.cssSelector("input[name='upload_file']"));
+        fileInput.sendKeys("C:\\Users\\humai\\OneDrive\\Masaüstü\\Web Denemesı\\Resimler\\th.jpg");
 
         WebElement submit=driver.findElement(By.cssSelector("input[value='Submit']"));
         submit.submit();
@@ -45,15 +44,6 @@ public class TC06 extends TestBase {
         WebElement actualSuccess= driver.findElement(By.cssSelector("div[style='display: block;']"));
         String exceptedSuccess="Success! Your details have been submitted successfully.";
         Assertions.assertEquals(actualSuccess.getText(),exceptedSuccess);
-
-
-
-
-
-
-
-
-
 
     }
 }

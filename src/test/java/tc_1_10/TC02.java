@@ -1,14 +1,10 @@
-package test_case01;
+package tc_1_10;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
-
-import java.time.Duration;
 
 public class TC02 extends TestBase{
 
@@ -20,10 +16,9 @@ public class TC02 extends TestBase{
 
         String expectedTitle="Automation Exercise";
         String actualTitle=driver.getTitle();
-        System.out.println("actualTitle = " + actualTitle);
         Assertions.assertEquals(expectedTitle,actualTitle);
 
-        WebElement link= driver.findElement(By.xpath("//a[@href='/login']/i"));
+        WebElement link= driver.findElement(By.partialLinkText("Signup / Login"));
         link.click();
 
         WebElement name=driver.findElement(By.xpath("//input[@data-qa='signup-name'] "));
@@ -107,10 +102,9 @@ public class TC02 extends TestBase{
 
         String expectedTitle="Automation Exercise";
         String actualTitle=driver.getTitle();
-        System.out.println("actualTitle = " + actualTitle);
         Assertions.assertEquals(expectedTitle,actualTitle);
 
-        WebElement link= driver.findElement(By.xpath("//a[@href='/login']/i"));
+        WebElement link= driver.findElement(By.partialLinkText("Signup / Login"));
         link.click();
 
         WebElement loginAcccount= driver.findElement(By.xpath("//h2[.='Login to your account']"));
@@ -128,7 +122,7 @@ public class TC02 extends TestBase{
         WebElement logged= driver.findElement(By.xpath("//*[text()=' Logged in as ']"));
         Assertions.assertTrue(logged.isDisplayed());
 
-        WebElement delete= driver.findElement(By.xpath("//a[@href='/delete_account']/i"));
+        WebElement delete= driver.findElement(By.partialLinkText("Delete Account"));
         delete.click();
 
         WebElement accountdeleted= driver.findElement(By.xpath("//b[.='Account Deleted!']"));

@@ -1,12 +1,11 @@
-package test_case01;
+package tc_1_10;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 import java.time.Duration;
@@ -80,5 +79,9 @@ public class TestBase {
 
     }
 
-
+    @Test
+    public Actions actions() {
+        Actions actions=new Actions(driver);
+        return actions;
+    }
 }

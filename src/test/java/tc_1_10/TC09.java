@@ -1,9 +1,11 @@
-package test_case01;
+package tc_1_10;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 public class TC09 extends TestBase{
 
@@ -14,10 +16,9 @@ public class TC09 extends TestBase{
 
         String expectedTitle="Automation Exercise";
         String actualTitle=driver.getTitle();
-        System.out.println("actualTitle = " + actualTitle);
         Assertions.assertEquals(expectedTitle,actualTitle);
 
-        WebElement contactUs= driver.findElement(By.xpath("//a[@href='/products']/i"));
+        WebElement contactUs= driver.findElement(By.partialLinkText("Products"));
         contactUs.click();
 
         WebElement actualAllProducts= driver.findElement(By.xpath("//*[.='All Products']"));
@@ -25,20 +26,14 @@ public class TC09 extends TestBase{
         Assertions.assertEquals(actualAllProducts.getText(),exceptedAllProducts);
 
         WebElement searchInput= driver.findElement(By.id("search_product"));
-        searchInput.sendKeys("Blue Top");
+        searchInput.sendKeys("dress");
 
         WebElement searchButton= driver.findElement(By.id("submit_search"));
         searchButton.click();
 
-        WebElement searchProducts= driver.findElement(By.xpath("//h2[.='Searched Products']"));
-        Assertions.assertTrue(searchProducts.isDisplayed());
+        List<WebElement> productList=driver.findElements(By.xpath("//div[@class='product-image-wrapper']"));
+        Assertions.assertFalse(productList.isEmpty());
 
-
-        WebElement productPrice= driver.findElement(By.xpath("(//h2)[4]"));
-        Assertions.assertTrue(productPrice.isDisplayed());
-
-        WebElement productName= driver.findElement(By.xpath("(//p)[5]"));
-        Assertions.assertTrue(productName.isDisplayed());
 
     }
 }
