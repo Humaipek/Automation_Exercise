@@ -1,21 +1,20 @@
 package tc_1_10;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import testbase.TestBase;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TC03 extends TestBase {
     @Test
     void tc03_1()  {
 
-        driver.get("https://automationexercise.com");
-        wait(3);
-
         String expectedTitle="Automation Exercise";
         String actualTitle=driver.getTitle();
-        Assertions.assertEquals(expectedTitle,actualTitle);
+        assertEquals(expectedTitle,actualTitle);
 
         WebElement link= driver.findElement(By.partialLinkText("Signup / Login"));
         link.click();
@@ -96,19 +95,15 @@ public class TC03 extends TestBase {
 
     @Test
     void tc03_2() {
-
-        driver.get("https://automationexercise.com");
-        wait(3);
-
         String expectedTitle="Automation Exercise";
         String actualTitle=driver.getTitle();
-        Assertions.assertEquals(expectedTitle,actualTitle);
+        assertEquals(expectedTitle,actualTitle);
 
         WebElement link= driver.findElement(By.partialLinkText("Signup / Login"));
         link.click();
 
         WebElement loginAcccount= driver.findElement(By.xpath("//h2[.='Login to your account']"));
-        Assertions.assertTrue(loginAcccount.isDisplayed());
+        assertTrue(loginAcccount.isDisplayed());
 
         WebElement email=driver.findElement(By.cssSelector("input[data-qa='login-email']"));
         email.sendKeys("ivory.mathayus@foodfarms.net");

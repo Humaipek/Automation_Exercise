@@ -1,50 +1,42 @@
 package tc_1_10;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import testbase.TestBase;
 
-public class TC01 extends TestBase{
+import static org.junit.jupiter.api.Assertions.*;
+
+public class TC01 extends TestBase {
 
     @Test
     void tc01() {
 
-        driver.get("https://automationexercise.com");
-        wait(3);
-
         String expectedTitle="Automation Exercise";
         String actualTitle=driver.getTitle();
-        Assertions.assertEquals(expectedTitle,actualTitle);
+        assertEquals(expectedTitle,actualTitle);
 
-        WebElement link= driver.findElement(By.partialLinkText("Signup / Login"));
-        link.click();
+        driver.findElement(By.partialLinkText("Signup / Login")).click();
 
-        WebElement newUserSignUp= driver.findElement(By.xpath("(//h2)[3]"));
-        Assertions.assertTrue(newUserSignUp.isDisplayed());
+        assertTrue(driver.findElement(By.xpath("(//h2)[3]")).isDisplayed());
 
-        WebElement name=driver.findElement(By.xpath("//input[@data-qa='signup-name'] "));
-        name.sendKeys("yuniel");
+        driver.findElement(By.xpath("//input[@data-qa='signup-name'] ")).sendKeys("yuniel");
 
-        WebElement email=driver.findElement(By.xpath("//input[@data-qa='signup-email']"));
-        email.sendKeys("fenton.gray@foodfarms.net");
+        driver.findElement(By.xpath("//input[@data-qa='signup-email']")).sendKeys("fenton.gray@foodfarms.net");
 
-        WebElement enter=driver.findElement(By.xpath("//button[@data-qa='signup-button']"));
-        enter.click();
+        driver.findElement(By.xpath("//button[@data-qa='signup-button']")).click();
 
         WebElement enterAccount=driver.findElement(By.xpath("//b[.='Enter Account Information']"));
-        Assertions.assertTrue(enterAccount.isDisplayed());
+        assertTrue(enterAccount.isDisplayed());
 
-        WebElement titleMrs= driver.findElement(By.id("id_gender2"));
-        titleMrs.click();
+        driver.findElement(By.id("id_gender2")).click();
 
         WebElement userName=driver.findElement(By.id("name"));
         userName.clear();
         userName.sendKeys("yuniel");
 
-        WebElement password=driver.findElement(By.id("password"));
-        password.sendKeys("Dunya1234");
+        driver.findElement(By.id("password")).sendKeys("Dunya1234");
 
         WebElement ddm= driver.findElement(By.id("days"));
         Select optionsDay=new Select(ddm);
@@ -59,60 +51,46 @@ public class TC01 extends TestBase{
         optionsYear.selectByVisibleText("1978");
 
 
-        WebElement checkBox=driver.findElement(By.id("newsletter"));
-        checkBox.click();
+        driver.findElement(By.id("newsletter")).click();
 
-        WebElement receive=driver.findElement(By.id("optin"));
-        receive.click();
+        driver.findElement(By.id("optin")).click();
 
-        WebElement firstName=driver.findElement(By.id("first_name"));
-        firstName.sendKeys("yuniel");
+        driver.findElement(By.id("first_name")).sendKeys("yuniel");
 
-        WebElement lastName=driver.findElement(By.id("last_name"));
-        lastName.sendKeys("kodey");
+        driver.findElement(By.id("last_name")).sendKeys("kodey");
 
-        WebElement companyName=driver.findElement(By.id("company"));
-        companyName.sendKeys("kodey");
+       driver.findElement(By.id("company")).sendKeys("kodey");
 
-        WebElement address1=driver.findElement(By.id("address1"));
-        address1.sendKeys("kodey");
+        driver.findElement(By.id("address1")).sendKeys("kodey");
 
-        WebElement address2=driver.findElement(By.id("address2"));
-        address2.sendKeys("kodey");
+        driver.findElement(By.id("address2")).sendKeys("kodey");
 
         WebElement ddm4= driver.findElement(By.id("country"));
         Select optionsCountry=new Select(ddm4);
         optionsCountry.selectByVisibleText("India");
 
-        WebElement state=driver.findElement(By.id("state"));
-        state.sendKeys("kodey");
+        driver.findElement(By.id("state")).sendKeys("kodey");
 
-        WebElement city=driver.findElement(By.id("city"));
-        city.sendKeys("kodey");
+        driver.findElement(By.id("city")).sendKeys("kodey");
 
-        WebElement zipcode=driver.findElement(By.id("zipcode"));
-        zipcode.sendKeys("3244");
+        driver.findElement(By.id("zipcode")).sendKeys("3244");
 
-        WebElement mobil=driver.findElement(By.id("mobile_number"));
-        mobil.sendKeys("3244226677");
+        driver.findElement(By.id("mobile_number")).sendKeys("3244226677");
 
-        WebElement create=driver.findElement(By.xpath("//button[@data-qa='create-account']"));
-        create.click();
+        driver.findElement(By.xpath("//button[@data-qa='create-account']")).click();
 
         WebElement accountcreated= driver.findElement(By.xpath("//b[.='Account Created!']"));
-        Assertions.assertTrue(accountcreated.isDisplayed());
+        assertTrue(accountcreated.isDisplayed());
 
-        WebElement continue1= driver.findElement(By.xpath("//a[@data-qa='continue-button']"));
-        continue1.click();
+        driver.findElement(By.xpath("//a[@data-qa='continue-button']")).click();
 
         WebElement logged= driver.findElement(By.xpath("//*[text()=' Logged in as ']"));
-        Assertions.assertTrue(logged.isDisplayed());
+        assertTrue(logged.isDisplayed());
 
-        WebElement delete= driver.findElement(By.partialLinkText("Delete Account"));
-        delete.click();
+        driver.findElement(By.partialLinkText("Delete Account")).click();
 
         WebElement accountdeleted= driver.findElement(By.xpath("//b[.='Account Deleted!']"));
-        Assertions.assertTrue(accountdeleted.isDisplayed());
+        assertTrue(accountdeleted.isDisplayed());
 
     }
 }

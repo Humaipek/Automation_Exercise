@@ -1,6 +1,6 @@
 package tc_11_20;
 
-import tc_1_10.TestBase;
+import testbase.TestBase;
 
 public class TC15 extends TestBase {
 }

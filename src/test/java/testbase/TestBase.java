@@ -1,4 +1,4 @@
-package tc_1_10;
+package testbase;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,6 +19,9 @@ public class TestBase {
         driver=new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+
+        driver.get("https://automationexercise.com");
+        wait(3);
     }
 
 //   @AfterEach
@@ -79,7 +82,7 @@ public class TestBase {
 
     }
 
-    @Test
+
     public Actions actions() {
         Actions actions=new Actions(driver);
         return actions;

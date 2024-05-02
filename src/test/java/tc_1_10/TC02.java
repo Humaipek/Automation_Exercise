@@ -1,22 +1,21 @@
 package tc_1_10;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import testbase.TestBase;
 
-public class TC02 extends TestBase{
+import static org.junit.jupiter.api.Assertions.*;
+
+public class TC02 extends TestBase {
 
     @Test
     void tc02_1() {
 
-        driver.get("https://automationexercise.com");
-        wait(3);
-
         String expectedTitle="Automation Exercise";
         String actualTitle=driver.getTitle();
-        Assertions.assertEquals(expectedTitle,actualTitle);
+        assertEquals(expectedTitle,actualTitle);
 
         WebElement link= driver.findElement(By.partialLinkText("Signup / Login"));
         link.click();
@@ -97,18 +96,15 @@ public class TC02 extends TestBase{
     @Test
     void tc02() {
 
-        driver.get("https://automationexercise.com");
-        wait(3);
-
         String expectedTitle="Automation Exercise";
         String actualTitle=driver.getTitle();
-        Assertions.assertEquals(expectedTitle,actualTitle);
+        assertEquals(expectedTitle,actualTitle);
 
         WebElement link= driver.findElement(By.partialLinkText("Signup / Login"));
         link.click();
 
         WebElement loginAcccount= driver.findElement(By.xpath("//h2[.='Login to your account']"));
-        Assertions.assertTrue(loginAcccount.isDisplayed());
+        assertTrue(loginAcccount.isDisplayed());
 
         WebElement email=driver.findElement(By.cssSelector("input[data-qa='login-email']"));
         email.sendKeys("kerby.kaidyn@foodfarms.net");
@@ -120,13 +116,13 @@ public class TC02 extends TestBase{
         enter.click();
 
         WebElement logged= driver.findElement(By.xpath("//*[text()=' Logged in as ']"));
-        Assertions.assertTrue(logged.isDisplayed());
+        assertTrue(logged.isDisplayed());
 
         WebElement delete= driver.findElement(By.partialLinkText("Delete Account"));
         delete.click();
 
         WebElement accountdeleted= driver.findElement(By.xpath("//b[.='Account Deleted!']"));
-        Assertions.assertTrue(accountdeleted.isDisplayed());
+        assertTrue(accountdeleted.isDisplayed());
 
     }
 }

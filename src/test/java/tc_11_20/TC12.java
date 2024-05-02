@@ -1,10 +1,11 @@
 package tc_11_20;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import tc_1_10.TestBase;
+import testbase.TestBase;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TC12 extends TestBase {
 //      Test Case 12: Add Products in Cart
@@ -23,12 +24,9 @@ public class TC12 extends TestBase {
     @Test
     void test01() {
 
-        driver.get("http://automationexercise.com");
-        wait(3);
-
         String expectedTitle="Automation Exercise";
         String actualTitle=driver.getTitle();
-        Assertions.assertEquals(expectedTitle,actualTitle);
+        assertEquals(expectedTitle,actualTitle);
 
         WebElement productButton= driver.findElement(By.partialLinkText("Products"));
         productButton.click();
@@ -48,23 +46,23 @@ public class TC12 extends TestBase {
         WebElement first=driver.findElement(By.xpath("//a[@data-product-id='1']"));
         WebElement second=driver.findElement(By.xpath("//a[@data-product-id='2']"));
 
-        Assertions.assertTrue( first.isDisplayed() && second.isDisplayed() );
+        assertTrue( first.isDisplayed() && second.isDisplayed() );
 
         String firstPrice=driver.findElement(By.xpath("(//td[@class='cart_price']/p)[1]")).getText();
         String exceptedFirsPrice="Rs. 500";
-        Assertions.assertEquals(firstPrice,exceptedFirsPrice);
+        assertEquals(firstPrice,exceptedFirsPrice);
 
         String secondPrice=driver.findElement(By.xpath("(//td[@class='cart_price']/p)[2]")).getText();
         String exceptedSecondPrice="Rs. 400";
-        Assertions.assertEquals(secondPrice,exceptedSecondPrice);
+        assertEquals(secondPrice,exceptedSecondPrice);
 
         String firstPriceTotal=driver.findElement(By.xpath("(//p[@class='cart_total_price'])[1]")).getText();
         String exceptedFirstPriceTotal="Rs. 500";
-        Assertions.assertEquals(firstPriceTotal,exceptedFirstPriceTotal);
+        assertEquals(firstPriceTotal,exceptedFirstPriceTotal);
 
         String secondPriceTotal=driver.findElement(By.xpath("(//p[@class='cart_total_price'])[2]")).getText();
         String exceptedSecondPriceTotal="Rs. 400";
-        Assertions.assertEquals(secondPriceTotal,exceptedSecondPriceTotal);
+        assertEquals(secondPriceTotal,exceptedSecondPriceTotal);
 
 
     }

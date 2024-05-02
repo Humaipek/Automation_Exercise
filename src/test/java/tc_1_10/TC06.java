@@ -1,25 +1,26 @@
 package tc_1_10;
 
-import org.junit.jupiter.api.Assertions;
+
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import testbase.TestBase;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TC06 extends TestBase {
 
     @Test
     void test01() {
-        driver.get("https://automationexercise.com");
-        wait(3);
 
         String expectedTitle="Automation Exercise";
         String actualTitle=driver.getTitle();
-        Assertions.assertEquals(expectedTitle,actualTitle);
+        assertEquals(expectedTitle,actualTitle);
 
         WebElement contactUs= driver.findElement(By.partialLinkText("Contact us"));
         contactUs.click();
         WebElement getInTouch= driver.findElement(By.xpath("(//h2)[2]"));
-        Assertions.assertTrue(getInTouch.isDisplayed());
+        assertTrue(getInTouch.isDisplayed());
 
         WebElement name=driver.findElement(By.cssSelector("input[data-qa='name']"));
         name.sendKeys("yuniel");
@@ -43,7 +44,7 @@ public class TC06 extends TestBase {
 
         WebElement actualSuccess= driver.findElement(By.cssSelector("div[style='display: block;']"));
         String exceptedSuccess="Success! Your details have been submitted successfully.";
-        Assertions.assertEquals(actualSuccess.getText(),exceptedSuccess);
+        assertEquals(actualSuccess.getText(),exceptedSuccess);
 
     }
 }
