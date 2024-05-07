@@ -11,33 +11,35 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TC13 extends TestBase {
 
     @Test
-    void test01() {
+    void VerifyProductQuantityInCart() {
+       // 1. Launch browser
+       // 2. Navigate to url 'https://automationexercise.com'
+       // 3. Verify that home page is visible successfully
+        assertEquals("https://automationexercise.com/",driver.getCurrentUrl());
 
-        String expectedTitle="Automation Exercise";
-        String actualTitle=driver.getTitle();
-        assertEquals(expectedTitle,actualTitle);
+       // 4. Click 'View Product' for any product on home page
+        driver.findElement(By.partialLinkText("View Product")).click();
 
-        WebElement viewProduct= driver.findElement(By.partialLinkText("View Product"));
-        viewProduct.click();
-
+       // 5. Verify product detail is opened
         String actuelTitle= driver.getTitle();
         String exceptedTitle="Automation Exercise - Product Details";
         assertEquals(actuelTitle,exceptedTitle);
 
+       // 6. Increase quantity to 4
         WebElement quantity= driver.findElement(By.xpath("//input[@id='quantity']"));
         quantity.clear();
         quantity.sendKeys("4");
 
-        WebElement addToCart=driver.findElement(By.xpath("//button[@type='button']"));
-        addToCart.click();
+       // 7. Click 'Add to cart' button
+        driver.findElement(By.xpath("//button[@type='button']")).click();
 
-        WebElement viewCart=driver.findElement(By.xpath("//u[.='View Cart']"));
-        viewCart.click();
+       // 8. Click 'View Cart' button
+        driver.findElement(By.xpath("//u[.='View Cart']")).click();
 
+       // 9. Verify that product is displayed in cart page with exact quantity
         String actualQuantity=driver.findElement(By.xpath("//button[@class='disabled']")).getText();
         String exceptedQuantity="4";
         assertEquals(actualQuantity,exceptedQuantity);
-
     }
 
 }
