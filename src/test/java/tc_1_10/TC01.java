@@ -14,22 +14,26 @@ public class TC01 extends TestBase {
 
     @Test
     void RegisterUser() {
-
+       createExtentReport("RegisterUser");
        // 1. Launch browser
        // 2. Navigate to url 'http://automationexercise.com'
        // 3. Verify that home page is visible successfully
-        assertEquals("https://automationexercise.com/",driver.getCurrentUrl());
+        assertEquals("https://automationexercise.com/",driver.getCurrentUrl(),"Not verifed that home page is visible successfully");
+        extentTest.info("Verifed that home page is visible successfully");
+        extentTest.pass("PASS");
+
 
        // 4. Click on 'Signup / Login' button
         driver.findElement(By.partialLinkText("Signup / Login")).click();
 
        // 5. Verify 'New User Signup!' is visible
-        assertTrue(driver.findElement(By.xpath("(//h2)[3]")).isDisplayed());
+        assertTrue(driver.findElement(By.xpath("//h2[.='New User Signup!']")).isDisplayed());
+        extentTest.info("Verifed 'New User Signup!' is visible");
+        extentTest.pass("PASS");
 
        // 6. Enter name and email address
-        driver.findElement(By.xpath("//input[@data-qa='signup-name'] ")).sendKeys(faker.name().firstName());
-
-        driver.findElement(By.xpath("//input[@data-qa='signup-email']")).sendKeys(faker.internet().emailAddress());
+        driver.findElement(By.xpath("//input[@data-qa='signup-name'] ")).sendKeys(faker.name().firstName(), Keys.TAB,
+                faker.internet().emailAddress());
 
        // 7. Click 'Signup' button
         driver.findElement(By.xpath("//button[@data-qa='signup-button']")).click();
@@ -37,6 +41,8 @@ public class TC01 extends TestBase {
        // 8. Verify that 'ENTER ACCOUNT INFORMATION' is visible
         WebElement enterAccount=driver.findElement(By.xpath("//b[.='Enter Account Information']"));
         assertTrue(enterAccount.isDisplayed());
+        extentTest.info("Verifed that 'ENTER ACCOUNT INFORMATION' is visible");
+        extentTest.pass("PASS");
 
        // 9. Fill details: Title, Name, Email, Password, Date of birth
         driver.findElement(By.id("id_gender2")).click();
@@ -45,13 +51,8 @@ public class TC01 extends TestBase {
         userName.clear();
         userName.sendKeys(faker.name().firstName());
 
-        driver.findElement(By.id("password")).sendKeys(faker.internet().password());
-
-        driver.findElement(By.id("days")).sendKeys("24");
-
-        driver.findElement(By.id("months")).sendKeys("September");
-
-        driver.findElement(By.id("years")).sendKeys("1978");
+        driver.findElement(By.id("password")).sendKeys(kayitliPassword,Keys.TAB,
+             "24", Keys.TAB,"September",Keys.TAB,"1978");
 
         // 10. Select checkbox 'Sign up for our newsletter!'
         driver.findElement(By.id("newsletter")).click();
@@ -76,7 +77,9 @@ public class TC01 extends TestBase {
 
        // 14. Verify that 'ACCOUNT CREATED!' is visible
         WebElement accountcreated= driver.findElement(By.xpath("//b[.='Account Created!']"));
-        assertTrue(accountcreated.isDisplayed());
+        assertTrue(accountcreated.isDisplayed(),"'ACCOUNT CREATED!' yazisi goruntulenemedi" );
+        extentTest.info("Verifed that 'ACCOUNT CREATED!' is visible");
+        extentTest.pass("PASS");
 
        // 15. Click 'Continue' button
         driver.findElement(By.xpath("//a[@data-qa='continue-button']")).click();
@@ -84,6 +87,8 @@ public class TC01 extends TestBase {
        // 16. Verify that 'Logged in as username' is visible
         WebElement logged= driver.findElement(By.xpath("//*[text()=' Logged in as ']"));
         assertTrue(logged.isDisplayed());
+     extentTest.info("Verifed that 'Logged in as username' is visible");
+     extentTest.pass("PASS");
 
        // 17. Click 'Delete Account' button
         driver.findElement(By.partialLinkText("Delete Account")).click();
@@ -92,6 +97,13 @@ public class TC01 extends TestBase {
 
         WebElement accountdeleted= driver.findElement(By.xpath("//b[.='Account Deleted!']"));
         assertTrue(accountdeleted.isDisplayed());
+     extentTest.info("Verifed Verify that 'ACCOUNT DELETED!' is visible and click 'Continue' button");
+     extentTest.pass("PASS");
+
+        driver.findElement(By.xpath("//*[@data-qa='continue-button']")).click();
+
+
+       extentTest.pass("PASS");
 
     }
 }

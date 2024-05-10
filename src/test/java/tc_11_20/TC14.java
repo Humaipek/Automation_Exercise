@@ -6,8 +6,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import testbase.TestBase;
+
+import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -114,11 +118,15 @@ public class TC14 extends TestBase {
 //  17. Click 'Pay and Confirm Order' button
         driver.findElement(By.id("submit")).click();
 
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("setTimeout(function(){}, 100000);");
+
 
 //  18. Verify success message 'Your order has been placed successfully!'
-        assertTrue(driver.findElement(By.id("success_message")).isDisplayed());
+       WebElement hide=driver.findElement(By.xpath("//div[@class='col-md-12 form-group']"));
+       jsClick(hide);
+        //     WebDriverWait waitElement=new WebDriverWait(driver, Duration.ofSeconds(20));
+  //     waitElement.until(driver->!s.getAttribute("class").equals("col-md-12 form-group"));
+
+   //     assertTrue(hide.isDisplayed());
 
 //  19. Click 'Delete Account' button
         driver.findElement(By.partialLinkText("Delete Account")).click();

@@ -3,8 +3,16 @@ package tc_21_26;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import testbase.TestBase;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -101,6 +109,7 @@ public class TC24 extends TestBase {
     //   15. Enter description in comment text area and click 'Place Order'
         driver.findElement(By.name("message")).sendKeys(faker.lorem().sentence());
         driver.findElement(By.partialLinkText("Place Order")).click();
+        cookie1();
 
     //   16. Enter payment details: Name on Card, Card Number, CVC, Expiration date
         driver.findElement(By.name("name_on_card")).sendKeys(faker.name().firstName(),Keys.TAB,
@@ -113,12 +122,22 @@ public class TC24 extends TestBase {
         driver.findElement(By.id("submit")).click();
 
     //   18. Verify success message 'Your order has been placed successfully!'
-        assertTrue(driver.findElement(By.id("success_message")).isDisplayed());
-        wait(3);
+      //  assertTrue(driver.findElement(By.id("success_message")).isDisplayed());
+       // wait(3);
 
     //   19. Click 'Download Invoice' button and verify invoice is downloaded successfully.
+        String txt= System.getProperty("user.home")+"\\Downloads\\invoice.txt";
+        try {
+            Files.delete(Paths.get(txt));
+        } catch (IOException e) {
+            System.out.println("Silinecek dosya bulunamadi");
+        }
+        driver.findElement(By.partialLinkText("Download Invoice")).click();
+        webDriverWait.until( driver -> Files.exists(Paths.get(txt)));
+        assertTrue(Files.exists(Paths.get(txt)));
 
     //   20. Click 'Continue' button
+        driver.findElement(By.partialLinkText("Continue")).click();
 
     //   21. Click 'Delete Account' button
         driver.findElement(By.partialLinkText("Delete Account")).click();

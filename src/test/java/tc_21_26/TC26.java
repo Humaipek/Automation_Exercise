@@ -4,9 +4,11 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import testbase.TestBase;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TC26 extends TestBase {
 
@@ -19,6 +21,7 @@ public class TC26 extends TestBase {
         assertEquals("https://automationexercise.com/",driver.getCurrentUrl());
 
      //   4. Scroll down page to bottom
+        actions=new Actions(driver);
         actions.sendKeys(Keys.END).perform();
 
      //   5. Verify 'SUBSCRIPTION' is visible
@@ -26,8 +29,14 @@ public class TC26 extends TestBase {
         assertEquals(subscription.getText(),"SUBSCRIPTION");
 
      //   6. Scroll up page to top
-        actions.sendKeys(Keys.UP);
+        actions.sendKeys(Keys.UP).perform();
 
      //   7. Verify that page is scrolled up and 'Full-Fledged practice website for Automation Engineers' text is visible on screen
+        WebElement s= driver.findElement(By.cssSelector("a[style='position: fixed; z-index: 2147483647; display: none;']"));
+        String style="position: fixed; z-index: 2147483647; display: none;";
+
+        assertEquals(s.getAttribute("style"),style);
+
+        assertTrue(driver.findElement(By.xpath("//*[.='Full-Fledged practice website for Automation Engineers']")).isDisplayed());
     }
 }
